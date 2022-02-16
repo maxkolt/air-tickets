@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNEXT",
+    "module": "ESNext",
+    "outDir": "./dist",
+    "esModuleInterop": true
+  }
+}
