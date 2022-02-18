@@ -1,16 +1,28 @@
 const path = require('path');
 const autoprefixer = require('autoprefixer');
-const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
     // Итак,  чтобы вебпак начал свою работу, нужно указать главный (основной) файл, который будет включать в себя все другие необходимые файлы (модули).
     entry: {
         polyfill: 'babel-polyfill',
-        app: './app.ts',
+        app: './src/ts/app.ts',
+    },
+    experiments: {
+        asyncWebAssembly: true,
+        syncWebAssembly: true,
+        topLevelAwait: true,
     },
     devServer: {
-        port: 3000
+        publicPath: '/',
+        port: 3000,
+        contentBase: path.join(process.cwd(), 'dist'),
+        host: 'localhost',
+        historyApiFallback: true,
+        noInfo: false,
+        stats: 'minimal',
+        hot: true,
     },
     module: {
         // Для того, чтобы трансформировать файл, используются специальные утилиты - загрузчики (loaders).
@@ -23,13 +35,13 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.js$/,
                 use: {
                     loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env'],
-                    }
-                }
+                    },
+                },
+                test: /\.js$/,
             },
             {
                 test: /\.(js|jsx|tsx|ts)$/,
@@ -90,9 +102,9 @@ module.exports = {
     ],
     // Кроме entry, мы можем указать поле, куда (в какой файл) собирать конечный результат. Это свойство задаётся с помощью поля output.
     //По умолчанию, весь результирующий код собирается в папку dist.
-    // output: {
-      // path: path.resolve(__dirname, 'dist'),
-    //   filename: '[name].[hash].js',
-    // },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[hash].js',
+    },
     mode: 'development',
 };
