@@ -23,6 +23,3 @@ export class Api {
 
   // async prices(params) {}
 }
-
-const api = new Api()
-console.log(api)
