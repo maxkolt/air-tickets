@@ -4,25 +4,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
+    entry: './src/ts/app.ts',
+    devtool: 'inline-source-map',
     // Итак,  чтобы вебпак начал свою работу, нужно указать главный (основной) файл, который будет включать в себя все другие необходимые файлы (модули).
-    entry: {
-        polyfill: 'babel-polyfill',
-        app: './src/ts/app.ts',
-    },
     experiments: {
         asyncWebAssembly: true,
         syncWebAssembly: true,
         topLevelAwait: true,
     },
     devServer: {
-        publicPath: '/',
-        port: 3000,
-        contentBase: path.join(process.cwd(), 'dist'),
-        host: 'localhost',
-        historyApiFallback: true,
-        noInfo: false,
-        stats: 'minimal',
+        port: 9000,
         hot: true,
+        static: {
+            directory: path.join(__dirname, './dist'),
+        },
     },
     module: {
         // Для того, чтобы трансформировать файл, используются специальные утилиты - загрузчики (loaders).
@@ -33,20 +28,6 @@ module.exports = {
                 test: /\.ts?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
-            },
-            {
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                    },
-                },
-                test: /\.js$/,
-            },
-            {
-                test: /\.(js|jsx|tsx|ts)$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
             },
             {
                 test: /\.(scss)$/,
