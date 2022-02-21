@@ -1,6 +1,7 @@
 {
   "name": "air-tickets",
   "scripts": {
+    "build": "webpack",
     "webpack": "webpack --mode development",
     "webpack:w": "webpack --mode development --watch",
     "start": "webpack serve --mode development --open"

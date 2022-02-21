@@ -1,8 +1,9 @@
-import {CountriesService} from "./services/countries-service";
-import {CitiesService} from "./services/cities-service";
+import {LocationsStore} from "./store/locations-store";
 
-const countriesService = new CountriesService
-await countriesService.findAllCountries()
 
-const citiesService = new CitiesService()
-await citiesService.findAllCities()
+const store = new LocationsStore()
+
+await store.initAllLocations()
+
+console.log(store.countries)
+console.log(store.cities)

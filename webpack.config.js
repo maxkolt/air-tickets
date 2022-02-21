@@ -19,11 +19,9 @@ module.exports = {
         topLevelAwait: true,
     },
     // сервер разработки
-    devServer: {
-        // порт
-        port: 9000,
-        // горячий
-    },
+    // devServer: {
+    // TODO
+    // },
     // модуль
     module: {
         // Для того, чтобы трансформировать файл, используются специальные утилиты - загрузчики (loaders).
@@ -44,21 +42,21 @@ module.exports = {
                 use: [{
                     // внедрить CSS на страницу
                     // внедрить
-                    loader: 'style-loader'
+                        loader: 'style-loader'
                 }, {
                     // переводит CSS в модули CommonJS
                     // внедрить
-                    loader: 'css-loader'
+                        loader: 'css-loader'
                 }, {
                     // Запуск действий postcss
                     // внедрить
-                    loader: 'postcss-loader',
+                        loader: 'postcss-loader',
                     // опции
-                    options: {
+                        options: {
                         // `postcssOptions` необходим для postcss 8.x;
                         // если вы используете postcss 7.x, пропустите ключ
                         // опубликовать css опции
-                        postcssOptions: {
+                            postcssOptions: {
                             // плагины postcss, можно экспортировать в postcss.config.js
                             plugins: function () {
                                 return [
@@ -67,11 +65,11 @@ module.exports = {
                             }
                         }
                     }
-                }, {
+                    }, {
                     // компилирует Sass в CSS
                     // внедрить
                     loader: 'sass-loader'
-                }]
+                    } ]
             },
             {   // тест
                 test: /\.(png|jpe?g|gif)$/,
@@ -92,7 +90,7 @@ module.exports = {
     // решать
     resolve: {
         // расширения
-        extensions: ['*', '.js', '.ts'],
+        extensions: [ '*', '.js', '.ts' ],
     },
     // Вебпак плагины используются для настройки процесса сборки.
     //Например, плагин для минификации кода (во время сборки код подвергается очистке и минификации).
