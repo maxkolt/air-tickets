@@ -1,0 +1,21 @@
+{
+  "country_code": "MH",
+  "code": "UIT",
+  "coordinates": {
+    "lat": 5.833333,
+    "lon": 169.61667
+  },
+  "name": "Джалуит",
+  "time_zone": "Pacific/Majuro",
+  "name_translations": {
+    "en": "Jaluit Island"
+  },
+  "cases": {
+    "da": "Джалуиту",
+    "pr": "Джалуите",
+    "ro": "Джалуита",
+    "su": "Джалуит",
+    "tv": "Джалуитом",
+    "vi": "на Джалуит"
+  }
+}

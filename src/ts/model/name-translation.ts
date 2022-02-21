@@ -1,3 +1,3 @@
 export interface NameTranslations {
-    en: string
+    en: string;
 }

@@ -5,6 +5,6 @@ export interface Country {
     code: string;
     name: string;
     currency: string;
-    name_translations: NameTranslations
-    cases: Cases
+    name_translations: NameTranslations;
+    cases: Cases;
 }
