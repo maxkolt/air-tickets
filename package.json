@@ -7,12 +7,12 @@
     "start": "webpack serve --mode development --open"
   },
   "devDependencies": {
+    "@types/materialize-css": "^1.0.11",
     "autoprefixer": "latest",
     "css-loader": "latest",
     "file-loader": "latest",
     "html-webpack-plugin": "latest",
     "node-sass": "latest",
-    "postcss": "latest",
     "postcss-loader": "latest",
     "precss": "latest",
     "sass-loader": "latest",
