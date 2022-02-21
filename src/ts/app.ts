@@ -1,6 +1,8 @@
-import {Api} from "./services/apiService";
+import {CountriesService} from "./services/countries-service";
+import {CitiesService} from "./services/cities-service";
 
-const api = new Api();
+const countriesService = new CountriesService
+await countriesService.findAllCountries()
 
-await api.countries().then(res => console.log(res))
-await api.cities().then(res2 => console.log(res2))
+const citiesService = new CitiesService()
+await citiesService.findAllCities()
