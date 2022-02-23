@@ -5,6 +5,9 @@
     "module": "ESNext",
     "outDir": "./dist",
     "esModuleInterop": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "types": [
+      "materialize-css",
+    ]
   }
 }
