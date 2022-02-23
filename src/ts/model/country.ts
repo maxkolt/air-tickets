@@ -1,5 +1,5 @@
 import {Cases} from "./cases";
-import {NameTranslations} from "./name-translation";
+import {NameTranslations} from "./name-translation-country";
 
 export interface Country {
     code: string;

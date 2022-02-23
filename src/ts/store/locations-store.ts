@@ -15,7 +15,7 @@ export class LocationsStore {
         this.cities = await citiesService.findAllCities()
     }
 
-    getCitiesByCountryCode(code: string) {
+    getCitiesByCountryCode(code: string): Array<City> {
         return this.cities.filter(city => city.country_code === code);
     }
 }

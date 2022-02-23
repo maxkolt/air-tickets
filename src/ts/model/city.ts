@@ -1,6 +1,6 @@
 import {Coordinates} from "./coordinates";
 import {NameTranslationsCity} from "./name-translation-city"
-import {CasesCity} from "./cases-import-city";
+import {CasesCity} from "./cases-city";
 
 export interface City {
     country_code: string;
