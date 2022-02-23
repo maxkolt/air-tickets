@@ -5,6 +5,9 @@ module.exports = {
     entry: {
         main: "./src/main.ts"
     },
+    experiments: {
+        topLevelAwait: true
+    },
     plugins: [ new HTMLlWebpackPlugin({ template: "index.html" }), new MiniCssExtractPlugin({filename: './main.scss'})],
     module: {
         rules: [

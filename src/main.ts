@@ -1,5 +1,5 @@
-//import './assets/style/main.scss';
-//import './plugins';
+import './assets/style/main.scss';
+import './plugins';
 import {LocationsStore} from "./ts/store/locations-store";
 
 

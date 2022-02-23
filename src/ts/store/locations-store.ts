@@ -8,7 +8,7 @@ export class LocationsStore {
     cities: Array<City> = new Array<City>()
 
 
-   async initAllLocations() {
+    async initAllLocations() {
         const countriesService = new CountriesService
         const citiesService = new CitiesService()
         this.countries = await countriesService.findAllCountries()
