@@ -1,44 +1,19 @@
-const path = require('path');
-const precss = require('precss');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HTMLlWebpackPlugin = require('html-webpack-plugin') // видит js файлы которые появляются на html странице
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') //хранит стили в отдельном файле
 
 module.exports = {
-    entry: './src/ts/app.ts',
-    experiments: {topLevelAwait: true},
+    entry: {
+        main: "./src/main.ts"
+    },
+    plugins: [ new HTMLlWebpackPlugin({ template: "index.html" }), new MiniCssExtractPlugin({filename: './main.scss'})],
     module: {
         rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    {loader: MiniCssExtractPlugin.loader},
-                    {loader: 'css-loader', options: {importLoaders: 1, sourceMap: true},},
-                    {loader: 'postcss-loader', options: {plugins: () => [precss, autoprefixer],},},
-                ],
-            },
-            {
-                test: /\.(png|jpe?g|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[path][name].[ext]',
-                        },
-                    },
-                ],
-            },
-        ],
+            { test: /\.ts?$/,                  use: 'ts-loader', exclude: /node_modules/ },
+            { test: /\.css$/,                  use: [ MiniCssExtractPlugin.loader, "css-loader" ] },
+            { test: /\.s[ac]ss$/,              use: [ "style-loader", "css-loader", "sass-loader" ], },
+            { test: /\.(png|svg|jpg|gif)$/,    use: [ "file-loader" ] },
+            { test: /\.(ttf|woff|woff2|eot)$/, use: [ "file-loader" ] },
+        ]
     },
-    resolve: {
-        extensions: ['*', '.js', '.ts'],
-    },
-    plugins: [
-        new MiniCssExtractPlugin({filename: './main.css'}),
-        new HtmlWebpackPlugin({template: 'index.html'}),
-    ],
-    output: {
-        //path: path.resolve(__dirname, 'dist'),
-        //  filename: '[name].[hash].js',
-    },
-    mode: 'development',
-};
+    resolve: { extensions: [ '.ts', '.js' ] },
+}

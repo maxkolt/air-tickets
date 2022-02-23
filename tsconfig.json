@@ -7,7 +7,7 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "types": [
-      "materialize-css"
+      "materialize-css",
     ]
   }
 }
