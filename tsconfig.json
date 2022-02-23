@@ -4,6 +4,10 @@
     "target": "ESNEXT",
     "module": "ESNext",
     "outDir": "./dist",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "types": [
+      "materialize-css",
+    ]
   }
 }

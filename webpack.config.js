@@ -1,60 +1,22 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HTMLlWebpackPlugin = require('html-webpack-plugin') // видит js файлы которые появляются на html странице
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') //хранит стили в отдельном файле
 
 module.exports = {
-  entry: './src/main.ts',
-  devtool: 'inline-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.ts?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(scss)$/,
-        use: [ {
-          // внедрить CSS на страницу
-          loader: 'style-loader'
-        }, {
-          // переводит CSS в модули CommonJS
-          loader: 'css-loader'
-        }, {
-          // Запуск действий postcss
-          loader: 'postcss-loader',
-          options: {
-            // `postcssOptions` необходим для postcss 8.x;
-            // если вы используете postcss 7.x, пропустите ключ
-            postcssOptions: {
-              // плагины postcss, можно экспортировать в postcss.config.js
-              plugins: function () {
-                return [
-                  require('autoprefixer')
-                ];
-              }
-            }
-          }
-        }, {
-          // компилирует Sass в CSS
-          loader: 'sass-loader'
-        } ]
-      }
-    ],
-  },
-  resolve: {
-    extensions: [ '.ts', '.js' ],
-  },
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-  experiments: {
-    topLevelAwait: true,
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './index.html',
-      inject: 'body'
-    }),
-  ]
-};
+    entry: {
+        main: "./src/main.ts"
+    },
+    experiments: {
+        topLevelAwait: true
+    },
+    plugins: [ new HTMLlWebpackPlugin({ template: "index.html" }), new MiniCssExtractPlugin({filename: './main.scss'})],
+    module: {
+        rules: [
+            { test: /\.ts?$/,                  use: 'ts-loader', exclude: /node_modules/ },
+            { test: /\.css$/,                  use: [ MiniCssExtractPlugin.loader, "css-loader" ] },
+            { test: /\.s[ac]ss$/,              use: [ "style-loader", "css-loader", "sass-loader" ], },
+            { test: /\.(png|svg|jpg|gif)$/,    use: [ "file-loader" ] },
+            { test: /\.(ttf|woff|woff2|eot)$/, use: [ "file-loader" ] },
+        ]
+    },
+    resolve: { extensions: [ '.ts', '.js' ] },
+}
