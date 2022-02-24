@@ -23,6 +23,14 @@ export class AutocompleteSearch {
         this.updateAutocomplete(autocomplete)
     }
 
+    getAllDataToSend() {
+        const form: HTMLFormElement = document.getElementById('form') as HTMLFormElement
+        const data = new FormData(form);
+        for (let entry of data) {
+            console.log('все данные формы помещены в этот обьект: '+ entry);
+        }
+    }
+
     private updateAutocomplete(autocomplete: M.Autocomplete) {
         const autocompleteData: AutocompleteData = {}
         for (const city of this.cities) {
