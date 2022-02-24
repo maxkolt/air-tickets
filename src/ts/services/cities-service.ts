@@ -6,7 +6,16 @@ export class CitiesService {
     async findAllCities() {
         const response = await axios.get(`${ApiConfig.url}/cities`);
         const cities: Array<City> = response.data;
-        //console.log('получил все города ' + cities)
         return cities;
+    }
+
+    async getCitiesByCountryCode(code: string) {
+        const cities: Array<City> = await this.findAllCities()
+        return cities.filter(city => city.country_code === code);
+    }
+
+    async getCityCodeByKey(key: number) {
+        const cities: Array<City> = await this.findAllCities()
+        return cities[key].code;
     }
 }

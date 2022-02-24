@@ -1,13 +1,13 @@
 import './assets/style/main.scss';
 import './ts/plugins';
-import {LocationsStore} from "./ts/store/locations-store";
+import {AutocompleteSearch} from "./ts/services/autocomplete-search";
 
+const autocomplete: AutocompleteSearch = new AutocompleteSearch()
+document.addEventListener('DOMContentLoaded', () => {
+    const elems = document.querySelectorAll('.autocomplete')
+    M.Autocomplete.init(elems)
+})
 
-const store = new LocationsStore()
-await store.initAllLocations()
+const autocompleteElement: HTMLInputElement = document.getElementById('autocomplete-origin') as HTMLInputElement
+autocompleteElement.addEventListener('input', () => autocomplete.inputListener())
 
-await store.getCitiesByCountryCode('')
-
-console.log(JSON.stringify(store.getCityCodeByKey(2)))
-console.log(JSON.stringify(store.createShortCities('Moscow')))
-console.log(JSON.stringify(store.serializeCountries([])))
