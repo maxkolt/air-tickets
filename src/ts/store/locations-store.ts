@@ -18,5 +18,37 @@ export class LocationsStore {
     getCitiesByCountryCode(code: string): Array<City> {
         return this.cities.filter(city => city.country_code === code);
     }
+
+    getCityCodeByKey(key: number) {
+        return this.cities[key].code;
+    }
+
+    createShortCities(cities: string) {
+        return Object.entries(cities).reduce((acc: any, [key]) => {
+            acc[key] = null;
+            return acc;
+        }, {});
+    }
+
+    serializeCountries(countries: Array<Country>) {
+        return countries.reduce((acc: any, country) => {
+            acc[country.code] = country;
+            return acc;
+        }, {});
+    }
+
+    serializeCities(cities: any) {
+        return cities.reduce((acc: any, city: any) => {
+            const country_name = this.countries[city.country_code].name;
+            const key = `${city.name},${country_name}`;
+            acc[key] = {
+                ...city,
+                country_name,
+            };
+            return acc;
+        }, {});
+    }
+
+
 }
 
