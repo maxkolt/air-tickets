@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     M.Autocomplete.init(elems)
 })
 
-const autocompleteElement: HTMLInputElement = document.getElementById('autocomplete-origin') as HTMLInputElement
-autocompleteElement.addEventListener('input', () => autocomplete.inputListener())
+const elementOrigin: HTMLInputElement = document.getElementById('autocomplete-origin') as HTMLInputElement
+elementOrigin.addEventListener('input', () => autocomplete.inputListener(elementOrigin))
+
+const elementDestination: HTMLInputElement = document.getElementById('autocomplete-destination') as HTMLInputElement
+elementDestination.addEventListener('input', () => autocomplete.inputListener(elementDestination))
+
 
