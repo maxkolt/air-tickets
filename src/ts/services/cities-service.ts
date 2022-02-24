@@ -8,14 +8,4 @@ export class CitiesService {
         const cities: Array<City> = response.data;
         return cities;
     }
-
-  /*  async getCitiesByCountryCode(code: string) {
-        const cities: Array<City> = await this.findAllCities()
-        return cities.filter(city => city.country_code === code);
-    }
-
-    async getCityCodeByKey(key: number) {
-        const cities: Array<City> = await this.findAllCities()
-        return cities[key].code;
-    }*/
 }

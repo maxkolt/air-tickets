@@ -16,4 +16,4 @@ elementDestination.addEventListener('input', () => autocomplete.inputListener(el
 
 
 const form: HTMLFormElement = document.getElementById('form') as HTMLFormElement
-form.addEventListener('submit', () => autocomplete.getAllDataToSend())
+form.addEventListener('submit', (event: SubmitEvent) => autocomplete.getAllDataToSend(event))

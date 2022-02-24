@@ -1,5 +1,6 @@
 import {CitiesService} from "./cities-service";
 import {City} from "../model/city";
+import {Request} from "../model/request";
 import Autocomplete = M.Autocomplete;
 import AutocompleteData = M.AutocompleteData;
 
@@ -23,12 +24,21 @@ export class AutocompleteSearch {
         this.updateAutocomplete(autocomplete)
     }
 
-    getAllDataToSend() {
-        const form: HTMLFormElement = document.getElementById('form') as HTMLFormElement
-        const data = new FormData(form);
-        for (let entry of data) {
-            console.log('все данные формы помещены в этот обьект: '+ entry);
+    getAllDataToSend(event: SubmitEvent) {
+        event.preventDefault()
+
+        const elementOrigin: HTMLInputElement = document.getElementById('autocomplete-origin') as HTMLInputElement
+        const elementDestination: HTMLInputElement = document.getElementById('autocomplete-destination') as HTMLInputElement
+        const elementDepart: HTMLInputElement = document.getElementById('datepicker-depart') as HTMLInputElement
+        const elementReturn: HTMLInputElement = document.getElementById('datepicker-return') as HTMLInputElement
+
+        const request: Request = {
+            origin: elementOrigin.value,
+            destination: elementDestination.value,
+            fromData: elementDepart.value,
+            returnData: elementReturn.value,
         }
+        console.warn(`готовые данные для отправки: ${JSON.stringify(request)}`);
     }
 
     private updateAutocomplete(autocomplete: M.Autocomplete) {
