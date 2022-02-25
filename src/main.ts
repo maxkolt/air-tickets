@@ -1,12 +1,32 @@
 import './assets/style/main.scss';
-import './plugins';
-import {LocationsStore} from "./ts/store/locations-store";
+import './ts/plugins';
+import {AutocompleteSearch} from "./ts/services/autocomplete-search";
+
+const autocomplete: AutocompleteSearch = new AutocompleteSearch()
+document.addEventListener('DOMContentLoaded', () => {
+    const elems = document.querySelectorAll('.autocomplete')
+    M.Autocomplete.init(elems)
+})
+
+const elementOrigin: HTMLInputElement = document.getElementById('autocomplete-origin') as HTMLInputElement
+elementOrigin.addEventListener('input', () => autocomplete.inputListener(elementOrigin))
+
+const elementDestination: HTMLInputElement = document.getElementById('autocomplete-destination') as HTMLInputElement
+elementDestination.addEventListener('input', () => autocomplete.inputListener(elementDestination))
+
+const form: HTMLFormElement = document.getElementById('form') as HTMLFormElement
+form.addEventListener('submit', (event: SubmitEvent) => autocomplete.getAllDataToSend(event))
 
 
-const store = new LocationsStore()
+/*
+await autocomplete.fetchTicketsParams({
+    origin,
+    destination,
+    departData,
+    returnData,
+    currency,
+})
+*/
 
-await store.initAllLocations()
 
-console.log(store.cities)
-console.log(store.countries)
-await store.getCitiesByCountryCode('RE')
+
