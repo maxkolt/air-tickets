@@ -18,6 +18,7 @@ const form: HTMLFormElement = document.getElementById('form') as HTMLFormElement
 form.addEventListener('submit', (event: SubmitEvent) => autocomplete.getAllDataToSend(event))
 
 
+/*
 await autocomplete.fetchTicketsParams({
     origin,
     destination,
@@ -25,6 +26,7 @@ await autocomplete.fetchTicketsParams({
     returnData,
     currency,
 })
+*/
 
 
 
