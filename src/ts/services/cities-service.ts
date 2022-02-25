@@ -9,8 +9,8 @@ export class CitiesService {
         return cities;
     }
 
-    async findPrices(params: Request) {
-        const response = await axios.get(`${ApiConfig.url}/prices/cheap`,{params});
+    async findPrices() {
+        const response = await axios.get(`${ApiConfig.url}/prices/cheap`);
         const price: Request = response.data;
         //console.log('Получил билеты нужных рейсов:' + JSON.stringify(cities))
         return price;

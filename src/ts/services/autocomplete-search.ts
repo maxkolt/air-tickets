@@ -48,8 +48,8 @@ export class AutocompleteSearch {
         }
     }
 
-/*    async fetchTicketsParams(params: Request) {
-        const response = await this.citiesService.findPrices(params)
+   async fetchTicketsParams() {
+        const response = await this.citiesService.findPrices()
         console.log(response)
-    }*/
+    }
 }
