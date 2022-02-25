@@ -4,16 +4,12 @@ import {Request} from "../model/request";
 import Autocomplete = M.Autocomplete;
 import AutocompleteData = M.AutocompleteData;
 
-
 export class AutocompleteSearch {
-    citiesService: CitiesService = new CitiesService()
-    cities: Array<City> = new Array<City>()
+    private readonly citiesService: CitiesService = new CitiesService()
+    private cities: Array<City> = new Array<City>()
 
     constructor() {
-        this.citiesService.findAllCities()
-            .then((citiesAll: Array<City>) => {
-                this.cities = citiesAll
-            })
+        this.citiesService.findAllCities().then((citiesAll: Array<City>) => this.cities = citiesAll)
     }
 
     inputListener(autocompleteElement: HTMLInputElement) {
