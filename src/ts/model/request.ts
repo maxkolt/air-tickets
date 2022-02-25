@@ -1,6 +1,7 @@
 export interface Request {
     origin: string;
     destination: string;
-    fromData: string;
+    departData: string;
     returnData?: string;
+    currency:string
 }

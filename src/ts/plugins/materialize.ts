@@ -7,6 +7,7 @@ M.FormSelect.init(select);
 const datepicker = document.querySelectorAll('.datepicker');
 M.Datepicker.init(datepicker, {
     showClearBtn: true,
+    format: 'd-mm-yyyy'
 });
 
 /*

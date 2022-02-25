@@ -31,12 +31,14 @@ export class AutocompleteSearch {
         const elementDestination: HTMLInputElement = document.getElementById('autocomplete-destination') as HTMLInputElement
         const elementDepart: HTMLInputElement = document.getElementById('datepicker-depart') as HTMLInputElement
         const elementReturn: HTMLInputElement = document.getElementById('datepicker-return') as HTMLInputElement
+        const elementCurrency: HTMLInputElement = document.getElementById('currency-select') as HTMLInputElement
 
         const request: Request = {
             origin: elementOrigin.value,
             destination: elementDestination.value,
-            fromData: elementDepart.value,
+            departData: elementDepart.value,
             returnData: elementReturn.value,
+            currency: elementCurrency.value,
         }
         console.warn(`готовые данные для отправки: ${JSON.stringify(request)}`);
     }
@@ -48,5 +50,10 @@ export class AutocompleteSearch {
             autocompleteData[cityName] = null
             autocomplete.updateData(autocompleteData)
         }
+    }
+
+    async fetchTicketsParams(params: Request) {
+        const response = await this.citiesService.findPrices(params)
+        console.log(response)
     }
 }

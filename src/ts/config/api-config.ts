@@ -1,4 +1,4 @@
 export class ApiConfig {
-    static readonly url = 'https://aviasales-api.herokuapp.com'
+    static readonly url: string = 'https://aviasales-api.herokuapp.com'
 }
 
