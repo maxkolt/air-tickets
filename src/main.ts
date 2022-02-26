@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const elems = document.querySelectorAll('.autocomplete')
     M.Autocomplete.init(elems)
 })
+
 const elementOrigin: HTMLInputElement = document.getElementById('autocomplete-origin') as HTMLInputElement
 
 elementOrigin.addEventListener('input', () => autocomplete.inputListener(elementOrigin))
@@ -18,9 +19,6 @@ elementDestination.addEventListener('input', () => autocomplete.inputListener(el
 const form: HTMLFormElement = document.getElementById('form') as HTMLFormElement
 
 form.addEventListener('submit', (event: SubmitEvent) => autocomplete.getAllDataToSend(event))
-
-const citiesService: CitiesService = new CitiesService()
-await citiesService.findPrices()
 
 const citiesService: CitiesService = new CitiesService()
 await citiesService.findPrices()

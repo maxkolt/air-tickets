@@ -1,6 +1,8 @@
 import axios from "axios";
 import {ApiConfig} from "../config/api-config";
 import {City} from "../model/city";
+import {PriceRequest} from "../model/price-request";
+
 
 export class CitiesService {
     async findAllCities() {
@@ -17,26 +19,32 @@ export class CitiesService {
         const elementDestination: HTMLInputElement = document.getElementById('autocomplete-destination') as HTMLInputElement
         const elementDepart: HTMLInputElement = document.getElementById('datepicker-depart') as HTMLInputElement
         const elementReturn: HTMLInputElement = document.getElementById('datepicker-return') as HTMLInputElement
-        const elementCurrency: HTMLInputElement = document.getElementById('currency-select') as HTMLInputElement
+        const elementCurrency :HTMLSelectElement = document.getElementById('currency-select') as HTMLSelectElement
 
-
-        const origin = elementOrigin.value;
-        const destination = elementDestination.value;
-        const depart_date = elementDepart.value;
-        const return_date = elementReturn.value;
+        const cityNameCod = elementOrigin.value;
+        const destinationNameCod = elementDestination.value;
+        const departDate = elementDepart.value;
+        const returnDate = elementReturn.value;
         const currency = elementCurrency.value;
 
+        const params = this.findCitiCodeByName(cityNameCod, destinationNameCod, departDate, returnDate, currency)
 
-        const params: Request = {
-                origin: origin,
-                destination: destination,
-                depart_date: depart_date,
-                return_date: return_date,
-                currency: currency
-            }
         const response = await axios.get(url, {params});
-        const price = response.data.data;
+        const price = response.data;
         console.log('Получил билеты нужных рейсов:' + JSON.stringify(price))
         return price;
+    }
+
+    private async findCitiCodeByName(origin: string, destination: string, departDate: string, returnDate: string, currency: string) {
+        const cityNameCod: Array<City> = await this.findAllCities()
+        cityNameCod.find(c => c.code === c.name)
+        const params: PriceRequest = {
+            origin: origin,
+            destination: destination,
+            depart_date: departDate,
+            return_date: returnDate,
+            currency: currency
+        }
+        return params
     }
 }
