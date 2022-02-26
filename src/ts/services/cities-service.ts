@@ -1,6 +1,7 @@
 import axios from "axios";
 import {ApiConfig} from "../config/api-config";
 import {City} from "../model/city";
+import {Request} from "../model/request";
 
 export class CitiesService {
     async findAllCities() {
@@ -9,10 +10,11 @@ export class CitiesService {
         return cities;
     }
 
-    async findPrices() {
-        const response = await axios.get(`${ApiConfig.url}/prices/cheap`);
-        const price: Request = response.data;
-        //console.log('Получил билеты нужных рейсов:' + JSON.stringify(cities))
+    async findPrices(params: Request) {
+        const response = await axios.get(`${ApiConfig.url}/prices/cheap`, {params});
+        const price: Request = response.data.params;
+        //console.log('Получил билеты нужных рейсов:' + JSON.stringify(price))
         return price;
     }
 }
+

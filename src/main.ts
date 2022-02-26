@@ -15,10 +15,9 @@ const elementDestination: HTMLInputElement = document.getElementById('autocomple
 elementDestination.addEventListener('input', () => autocomplete.inputListener(elementDestination))
 
 const form: HTMLFormElement = document.getElementById('form') as HTMLFormElement
+
 form.addEventListener('submit', (event: SubmitEvent) => autocomplete.getAllDataToSend(event))
 
-
-await autocomplete.fetchTicketsParams()
 
 
 

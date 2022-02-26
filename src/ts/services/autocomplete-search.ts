@@ -36,7 +36,7 @@ export class AutocompleteSearch {
             returnData: elementReturn.value,
             currency: elementCurrency.value,
         }
-        console.warn(`готовые данные для отправки: ${JSON.stringify(request)}`);
+         console.warn(`готовые данные для отправки: ${JSON.stringify(request)}`);
     }
 
     private updateAutocomplete(autocomplete: M.Autocomplete) {
@@ -46,10 +46,5 @@ export class AutocompleteSearch {
             autocompleteData[cityName] = null
             autocomplete.updateData(autocompleteData)
         }
-    }
-
-   async fetchTicketsParams() {
-        const response = await this.citiesService.findPrices()
-        console.log(response)
     }
 }
