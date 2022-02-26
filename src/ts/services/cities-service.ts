@@ -11,20 +11,32 @@ export class CitiesService {
 
     async findPrices() {
         const urlPrice = '/prices/cheap';
+        const url = `${ApiConfig.url}${urlPrice}`;
 
-        const paramOrigin = 'origin=HRK';
-        const paramDestination= 'destination=IEV';
-        const paramDepartDate = `depart_date=2022-01`;
-        const paramReturnDate = `return_date=2022-02`;
+        const elementOrigin: HTMLInputElement = document.getElementById('autocomplete-origin') as HTMLInputElement
+        const elementDestination: HTMLInputElement = document.getElementById('autocomplete-destination') as HTMLInputElement
+        const elementDepart: HTMLInputElement = document.getElementById('datepicker-depart') as HTMLInputElement
+        const elementReturn: HTMLInputElement = document.getElementById('datepicker-return') as HTMLInputElement
+        const elementCurrency: HTMLInputElement = document.getElementById('currency-select') as HTMLInputElement
 
-        let paramCurrency = `currency=USD`;
 
-    // &${paramReturnDate}
-        const response = await axios.get(
-            `${ApiConfig.url}${urlPrice}?${paramReturnDate}&${paramOrigin}&${paramDestination}&${paramDepartDate}&${paramCurrency}`
-        );
-        const price = response.data;
-        console.log('🙈 Получил билеты нужных рейсов: \n' + JSON.stringify(price))
+        const origin = elementOrigin.value;
+        const destination = elementDestination.value;
+        const depart_date = elementDepart.value;
+        const return_date = elementReturn.value;
+        const currency = elementCurrency.value;
+
+
+        const params: Request = {
+                origin: origin,
+                destination: destination,
+                depart_date: depart_date,
+                return_date: return_date,
+                currency: currency
+            }
+        const response = await axios.get(url, {params});
+        const price = response.data.data;
+        console.log('Получил билеты нужных рейсов:' + JSON.stringify(price))
         return price;
     }
 }

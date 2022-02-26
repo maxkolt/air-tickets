@@ -32,8 +32,8 @@ export class AutocompleteSearch {
         const request: Request = {
             origin: elementOrigin.value,
             destination: elementDestination.value,
-            departData: elementDepart.value,
-            returnData: elementReturn.value,
+            depart_date: elementDepart.value,
+            return_date: elementReturn.value,
             currency: elementCurrency.value,
         }
          console.warn(`готовые данные для отправки: ${JSON.stringify(request)}`);

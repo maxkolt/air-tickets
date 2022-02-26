@@ -1,7 +1,7 @@
 export interface Request {
     origin: string;
     destination: string;
-    departData?: string;
-    returnData?: string;
+    depart_date?: string;
+    return_date?: string;
     currency: string
 }
