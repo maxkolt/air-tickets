@@ -3,5 +3,5 @@ export interface Request {
     destination: string;
     departData?: string;
     returnData?: string;
-    currency:string
+    currency: string
 }

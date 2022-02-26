@@ -10,11 +10,12 @@ export class CitiesService {
         return cities;
     }
 
-    async findPrices(params: Request) {
-        const response = await axios.get(`${ApiConfig.url}/prices/cheap`, {params});
-        const price: Request = response.data.params;
-        //console.log('Получил билеты нужных рейсов:' + JSON.stringify(price))
+    async findPrices() {
+        const response = await axios.get('https://aviasales-api.herokuapp.com/prices/cheap?origin=HRK&destination=IEV&departDate=2019-09&returnDate=2019-09&currency=USD');
+        const price = response.data;
+        console.log('Получил билеты нужных рейсов:' + JSON.stringify(price))
         return price;
     }
 }
-
+const citiesService: CitiesService = new CitiesService()
+await citiesService.findPrices()
