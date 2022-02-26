@@ -1,6 +1,7 @@
 import './assets/style/main.scss';
 import './ts/plugins';
 import {AutocompleteSearch} from "./ts/services/autocomplete-search";
+import {CitiesService} from "./ts/services/cities-service";
 
 const autocomplete: AutocompleteSearch = new AutocompleteSearch()
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,6 +20,8 @@ const form: HTMLFormElement = document.getElementById('form') as HTMLFormElement
 form.addEventListener('submit', (event: SubmitEvent) => autocomplete.getAllDataToSend(event))
 
 
+const citiesService: CitiesService = new CitiesService()
+await citiesService.findPrices()
 
 
 

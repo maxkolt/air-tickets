@@ -10,17 +10,21 @@ export class CitiesService {
     }
 
     async findPrices() {
-        const urlPrice: string = '/prices/cheap';
-        const urlOrigin: string = 'origin=HRK';
-        const urlDestination: string = 'destination=IEV';
+        const urlPrice = '/prices/cheap';
 
-        const urlData = `departDate=2019-09`;
-        const response = await axios.get(`${ApiConfig.url}${urlPrice}?${urlOrigin}&${urlDestination}&${urlData}&returnDate=2019-09&currency=USD`);
+        const paramOrigin = 'origin=HRK';
+        const paramDestination= 'destination=IEV';
+        const paramDepartDate = `depart_date=2022-01`;
+        const paramReturnDate = `return_date=2022-02`;
+
+        let paramCurrency = `currency=USD`;
+
+    // &${paramReturnDate}
+        const response = await axios.get(
+            `${ApiConfig.url}${urlPrice}?${paramReturnDate}&${paramOrigin}&${paramDestination}&${paramDepartDate}&${paramCurrency}`
+        );
         const price = response.data;
-        console.log('Получил билеты нужных рейсов:' + JSON.stringify(price))
+        console.log('🙈 Получил билеты нужных рейсов: \n' + JSON.stringify(price))
         return price;
     }
 }
-
-const citiesService: CitiesService = new CitiesService()
-await citiesService.findPrices()
