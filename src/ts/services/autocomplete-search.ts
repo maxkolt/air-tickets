@@ -3,6 +3,7 @@ import {City} from "../model/city";
 import {PriceRequest} from "../model/price-request";
 import Autocomplete = M.Autocomplete;
 import AutocompleteData = M.AutocompleteData;
+import {NameTranslations} from "../model/name-translation";
 
 export class AutocompleteSearch {
     private readonly citiesService: CitiesService = new CitiesService()
@@ -27,7 +28,7 @@ export class AutocompleteSearch {
         const elementDestination: HTMLInputElement = document.getElementById('autocomplete-destination') as HTMLInputElement
         const elementDepart: HTMLInputElement = document.getElementById('datepicker-depart') as HTMLInputElement
         const elementReturn: HTMLInputElement = document.getElementById('datepicker-return') as HTMLInputElement
-        const elementCurrency: HTMLSelectElement = document.getElementById('currency-select') as HTMLSelectElement
+        const elementCurrency: HTMLInputElement = document.getElementById('select-element') as HTMLInputElement
 
         const request: PriceRequest = {
             origin: elementOrigin.value,

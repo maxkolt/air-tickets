@@ -19,15 +19,15 @@ export class CitiesService {
         const elementDestination: HTMLInputElement = document.getElementById('autocomplete-destination') as HTMLInputElement
         const elementDepart: HTMLInputElement = document.getElementById('datepicker-depart') as HTMLInputElement
         const elementReturn: HTMLInputElement = document.getElementById('datepicker-return') as HTMLInputElement
-        const elementCurrency :HTMLSelectElement = document.getElementById('currency-select') as HTMLSelectElement
+        const elementCurrency: HTMLInputElement = document.getElementById('currency-select') as HTMLInputElement
 
-        const cityNameCod = elementOrigin.value;
-        const destinationNameCod = elementDestination.value;
+        const cityCode = elementOrigin.value;
+        const destinationCode = elementDestination.value;
         const departDate = elementDepart.value;
         const returnDate = elementReturn.value;
         const currency = elementCurrency.value;
 
-        const params = this.findCitiCodeByName(cityNameCod, destinationNameCod, departDate, returnDate, currency)
+        const params = this.findCitiCodeByName(cityCode, destinationCode, departDate, returnDate, currency)
 
         const response = await axios.get(url, {params});
         const price = response.data;
@@ -36,14 +36,30 @@ export class CitiesService {
     }
 
     private async findCitiCodeByName(origin: string, destination: string, departDate: string, returnDate: string, currency: string) {
-        const cityNameCod: Array<City> = await this.findAllCities()
-        cityNameCod.find(c => c.code === c.name)
+        const cities: Array<City> = await this.findAllCities()
+
+        function codeCity() {
+            const city: City = cities.find(c => c.name = origin)!
+            const cityCode: string = city.code
+            return cityCode;
+        }
+        const cityCode = codeCity();
+
+        function destinationCod() {
+            const city = cities.find(c => c.name = destination)!
+            const destinationCode = city.code
+            return destinationCode
+        }
+
+       const destinationCode = destinationCod()
+
+
         const params: PriceRequest = {
-            origin: origin,
-            destination: destination,
+            origin: cityCode,
+            destination: destinationCode,
             depart_date: departDate,
             return_date: returnDate,
-            currency: currency
+            currency: currency,
         }
         return params
     }
