@@ -30,33 +30,21 @@ export class CitiesService {
         const params = this.findCitiCodeByName(cityCode, destinationCode, departDate, returnDate, currency)
 
         const response = await axios.get(url, {params});
-        const price = response.data;
-        console.log('Получил билеты нужных рейсов:' + JSON.stringify(price))
+        const price = response;
+        //console.log('Получил билеты нужных рейсов:' + JSON.stringify(price))
         return price;
     }
 
     private async findCitiCodeByName(origin: string, destination: string, departDate: string, returnDate: string, currency: string) {
+
         const cities: Array<City> = await this.findAllCities()
-
-        function codeCity() {
-            const city: City = cities.find(c => c.name = origin)!
-            const cityCode: string = city.code
-            return cityCode;
-        }
-        const cityCode = codeCity();
-
-        function destinationCod() {
-            const city = cities.find(c => c.name = destination)!
-            const destinationCode = city.code
-            return destinationCode
-        }
-
-       const destinationCode = destinationCod()
+        const city = cities.find(c => c.code = origin)!
+        const cityCode = city.code
 
 
         const params: PriceRequest = {
             origin: cityCode,
-            destination: destinationCode,
+            destination: destination,
             depart_date: departDate,
             return_date: returnDate,
             currency: currency,
