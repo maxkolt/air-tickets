@@ -18,12 +18,9 @@ const elementDestination: HTMLInputElement = document.getElementById('autocomple
 elementDestination.addEventListener('input', () => autocomplete.inputListener(elementDestination))
 const form: HTMLFormElement = document.getElementById('form') as HTMLFormElement
 
+const citiesService = new CitiesService()
 form.addEventListener('submit', (event: SubmitEvent) => autocomplete.getAllDataToSend(event))
-
-const citiesService: CitiesService = new CitiesService()
-await citiesService.findPrices()
-
-
+form.addEventListener("submit", () => citiesService.findPrices())
 
 
 

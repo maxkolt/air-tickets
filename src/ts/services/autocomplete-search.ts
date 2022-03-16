@@ -3,7 +3,6 @@ import {City} from "../model/city";
 import {PriceRequest} from "../model/price-request";
 import Autocomplete = M.Autocomplete;
 import AutocompleteData = M.AutocompleteData;
-import {NameTranslations} from "../model/name-translation";
 
 export class AutocompleteSearch {
     private readonly citiesService: CitiesService = new CitiesService()
