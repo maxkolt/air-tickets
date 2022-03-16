@@ -1,6 +1,6 @@
 import {CitiesService} from "./cities-service";
 import {City} from "../model/city";
-import {Request} from "../model/request";
+import {PriceRequest} from "../model/price-request";
 import Autocomplete = M.Autocomplete;
 import AutocompleteData = M.AutocompleteData;
 
@@ -27,16 +27,16 @@ export class AutocompleteSearch {
         const elementDestination: HTMLInputElement = document.getElementById('autocomplete-destination') as HTMLInputElement
         const elementDepart: HTMLInputElement = document.getElementById('datepicker-depart') as HTMLInputElement
         const elementReturn: HTMLInputElement = document.getElementById('datepicker-return') as HTMLInputElement
-        const elementCurrency: HTMLInputElement = document.getElementById('currency-select') as HTMLInputElement
+        const elementCurrency: HTMLInputElement = document.getElementById('select-element') as HTMLInputElement
 
-        const request: Request = {
+        const request: PriceRequest = {
             origin: elementOrigin.value,
             destination: elementDestination.value,
-            departData: elementDepart.value,
-            returnData: elementReturn.value,
+            depart_date: elementDepart.value,
+            return_date: elementReturn.value,
             currency: elementCurrency.value,
         }
-        console.warn(`готовые данные для отправки: ${JSON.stringify(request)}`);
+         console.warn(`готовые данные для отправки: ${JSON.stringify(request)}`);
     }
 
     private updateAutocomplete(autocomplete: M.Autocomplete) {
@@ -47,9 +47,4 @@ export class AutocompleteSearch {
             autocomplete.updateData(autocompleteData)
         }
     }
-
-/*    async fetchTicketsParams(params: Request) {
-        const response = await this.citiesService.findPrices(params)
-        console.log(response)
-    }*/
 }
